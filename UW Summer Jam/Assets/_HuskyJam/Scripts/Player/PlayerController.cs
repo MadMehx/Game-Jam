@@ -9,6 +9,10 @@ public class PlayerController : MonoBehaviour
     private float speed = 1;
 
     [SerializeField]
+    private float runMultiplier = 10;
+
+
+    [SerializeField]
     private bool isSmooth = true;
 
     [SerializeField]
@@ -54,6 +58,18 @@ public class PlayerController : MonoBehaviour
             turnUI.SetActive(false);
         }
 
+
+#if UNITY_EDITOR
+        if (Input.GetKeyDown(KeyCode.LeftShift))
+        {
+            speed = speed * runMultiplier;
+        }
+
+        if (Input.GetKeyUp(KeyCode.LeftShift))
+        {
+            speed = speed / runMultiplier;
+        }
+#endif
 
 
         if (Input.GetKey(KeyCode.W))
