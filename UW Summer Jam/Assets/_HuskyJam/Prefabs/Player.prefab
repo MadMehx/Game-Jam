@@ -43,7 +43,7 @@ AudioSource:
   OutputAudioMixerGroup: {fileID: 0}
   m_audioClip: {fileID: 0}
   m_PlayOnAwake: 0
-  m_Volume: 1
+  m_Volume: 0.7
   m_Pitch: 1
   Loop: 0
   Mute: 0
@@ -388,6 +388,7 @@ MonoBehaviour:
   charController: {fileID: 6760189005137857821}
   speed: 1.5
   runMultiplier: 10
+  inputDirection: {x: 0, y: 0, z: 0}
   footManager: {fileID: 8315845441596362877}
   timeBetweenFootSteps: 1
   timeFoot: 0
