@@ -72,13 +72,14 @@ public class MapManager : MonoBehaviour
                 if (PlayerKeyManager.instance.CheckKey("Door 1") == true)
                 {
                     //Has Key
+                    AlertTextManager.instance.MakeAlert("Red Key Used");
                     StartCoroutine(FadeDoor(door1Collider, door1MeshRenderer));
                     source.SetActive(false);
                 }
                 else
                 {
                     //No Key
-                    Debug.Log("No Key");
+                    AlertTextManager.instance.MakeAlert("Red Key Required");
                 }
                 break;
 

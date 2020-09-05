@@ -17,6 +17,17 @@ public class PlayerController : MonoBehaviour
     [SerializeField]
     private float lookSnap = 15;
 
+    [SerializeField, ReadOnlyField]
+    private bool firstTimeMoving = true;
+
+    [SerializeField, ReadOnlyField]
+    private bool firstTimeTurning = true;
+
+    [SerializeField]
+    private GameObject moveUI = null;
+
+    [SerializeField]
+    private GameObject turnUI = null;
 
     void Start()
     {
@@ -25,22 +36,46 @@ public class PlayerController : MonoBehaviour
 
     void Update()
     {
+        if (firstTimeMoving == true) //Holy fuck this is literal garbage code
+        {
+            moveUI.SetActive(true);
+        }
+        else
+        {
+            moveUI.SetActive(false);
+        }
+
+        if (firstTimeMoving == false && firstTimeTurning == true)
+        {
+            turnUI.SetActive(true);
+        }
+        else
+        {
+            turnUI.SetActive(false);
+        }
+
+
+
         if (Input.GetKey(KeyCode.W))
         {
             charController.Move(transform.forward * speed * Time.deltaTime);
+            firstTimeMoving = false;
         }
         else if (Input.GetKey(KeyCode.S))
         {
             charController.Move(-transform.forward * speed * Time.deltaTime);
+            firstTimeMoving = false;
         }
 
         if (Input.GetKey(KeyCode.D))
         {
             charController.Move(transform.right * speed * Time.deltaTime);
+            firstTimeMoving = false;
         }
         else if (Input.GetKey(KeyCode.A))
         {
             charController.Move(-transform.right * speed * Time.deltaTime);
+            firstTimeMoving = false;
         }
 
         if (isSmooth == false)
@@ -48,10 +83,12 @@ public class PlayerController : MonoBehaviour
             if (Input.GetKeyDown(KeyCode.RightArrow))
             {
                 transform.Rotate(Vector3.up, lookSnap);
+                firstTimeTurning = false;
             }
             else if (Input.GetKeyDown(KeyCode.LeftArrow))
             {
                 transform.Rotate(Vector3.up, -lookSnap);
+                firstTimeTurning = false;
             }
         }
         else
@@ -59,10 +96,12 @@ public class PlayerController : MonoBehaviour
             if (Input.GetKey(KeyCode.RightArrow))
             {
                 transform.Rotate(Vector3.up, lookSpeed * Time.deltaTime);
+                firstTimeTurning = false;
             }
             else if (Input.GetKey(KeyCode.LeftArrow))
             {
                 transform.Rotate(Vector3.up, -lookSpeed * Time.deltaTime);
+                firstTimeTurning = false;
             }
         }
 
