@@ -8,6 +8,15 @@ public class PlayerController : MonoBehaviour
     [SerializeField]
     private float speed = 1;
 
+    [SerializeField]
+    private bool isSmooth = true;
+
+    [SerializeField]
+    private float lookSpeed = 90;
+
+    [SerializeField]
+    private float lookSnap = 15;
+
 
     void Start()
     {
@@ -34,14 +43,29 @@ public class PlayerController : MonoBehaviour
             charController.Move(-transform.right * speed * Time.deltaTime);
         }
 
-        if (Input.GetKeyDown(KeyCode.RightArrow))
+        if (isSmooth == false)
         {
-            transform.Rotate(Vector3.up, 15);
+            if (Input.GetKeyDown(KeyCode.RightArrow))
+            {
+                transform.Rotate(Vector3.up, lookSnap);
+            }
+            else if (Input.GetKeyDown(KeyCode.LeftArrow))
+            {
+                transform.Rotate(Vector3.up, -lookSnap);
+            }
         }
-        else if (Input.GetKeyDown(KeyCode.LeftArrow))
+        else
         {
-            transform.Rotate(Vector3.up, -15);
+            if (Input.GetKey(KeyCode.RightArrow))
+            {
+                transform.Rotate(Vector3.up, lookSpeed * Time.deltaTime);
+            }
+            else if (Input.GetKey(KeyCode.LeftArrow))
+            {
+                transform.Rotate(Vector3.up, -lookSpeed * Time.deltaTime);
+            }
         }
+
 
 
     }
