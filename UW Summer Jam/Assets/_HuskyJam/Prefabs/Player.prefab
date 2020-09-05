@@ -397,6 +397,8 @@ MonoBehaviour:
   lookSnap: 15
   firstTimeMoving: 1
   firstTimeTurning: 1
+  playerPointLight: {fileID: 6760189005611179241}
+  fadeTime: 3
   moveUI: {fileID: 0}
   turnUI: {fileID: 0}
 --- !u!114 &6760189005137857810
@@ -424,7 +426,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 37b191a37c00c564f8ac6e40f355da3d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  footstepPitchRange: {x: 0, y: 0}
   footstepClips:
   - {fileID: 8300000, guid: e3fe89a3523c2274388dd119ede41a6f, type: 3}
   - {fileID: 8300000, guid: bc5c8a6641c68244b9b7a70506993d94, type: 3}

@@ -7,7 +7,7 @@ public class MapManager : MonoBehaviour
     public static MapManager instance = null;
 
     [SerializeField]
-    private CharacterController playerController = null;
+    private PlayerController playerController = null;
 
     [Header("Area 1")]
     [SerializeField]
@@ -110,21 +110,20 @@ public class MapManager : MonoBehaviour
                 break;
 
 
-
-
-
-
             case ("EndlessTrigger 1"):
-                playerController.enabled = false;
+                playerController.charController.enabled = false;
                 playerController.transform.position = playerController.transform.position - (endlessHallwayPoint1.position - endlessHallwayPoint2.position);
-                playerController.enabled = true;
+                playerController.charController.enabled = true;
                 break;
             case ("EndlessTrigger 2"):
-                playerController.enabled = false;
+                playerController.charController.enabled = false;
                 playerController.transform.position = playerController.transform.position - (endlessHallwayPoint2.position - endlessHallwayPoint1.position);
-                playerController.enabled = true;
+                playerController.charController.enabled = true;
                 break;
 
+            case ("EndGame Trigger"):
+                StartCoroutine(playerController.EndGame());
+                break;
         }
     }
 
@@ -155,7 +154,4 @@ public class MapManager : MonoBehaviour
 
         Destroy(door1Collider.gameObject);
     }
-
-
-
 }

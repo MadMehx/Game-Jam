@@ -4,14 +4,14 @@ using UnityEngine;
 public class FootstepManager : MonoBehaviour
 {
     [Header("Foot Steps")]
-    [SerializeField]
-    private Vector2 footstepPitchRange;
+    //[SerializeField]
+    //private Vector2 footstepPitchRange;
 
     [SerializeField]
-    private List<AudioClip> footstepClips;
+    private List<AudioClip> footstepClips = new List<AudioClip>();
 
     [SerializeField]
-    private AudioSource audioSource;
+    private AudioSource audioSource = null;
 
     private int lastUsedClip = 0;
 
