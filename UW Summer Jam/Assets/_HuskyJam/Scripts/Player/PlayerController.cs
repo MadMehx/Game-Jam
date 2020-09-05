@@ -11,6 +11,18 @@ public class PlayerController : MonoBehaviour
     [SerializeField]
     private float runMultiplier = 10;
 
+    [SerializeField, ReadOnlyField]
+    private Vector3 inputDirection;
+
+
+    [SerializeField]
+    private FootstepManager footManager;
+
+    [SerializeField]
+    private float timeBetweenFootSteps = 1.0f;
+    [SerializeField]
+    private float timeFoot = 0.0f;
+
 
     [SerializeField]
     private bool isSmooth = true;
@@ -70,28 +82,40 @@ public class PlayerController : MonoBehaviour
             speed = speed / runMultiplier;
         }
 #endif
-
+        inputDirection = Vector3.zero;
 
         if (Input.GetKey(KeyCode.W))
         {
-            charController.Move(transform.forward * speed * Time.deltaTime);
+            inputDirection += transform.forward;
             firstTimeMoving = false;
         }
         else if (Input.GetKey(KeyCode.S))
         {
-            charController.Move(-transform.forward * speed * Time.deltaTime);
+            inputDirection += -transform.forward;
             firstTimeMoving = false;
         }
 
         if (Input.GetKey(KeyCode.D))
         {
-            charController.Move(transform.right * speed * Time.deltaTime);
+            inputDirection += transform.right;
             firstTimeMoving = false;
         }
         else if (Input.GetKey(KeyCode.A))
         {
-            charController.Move(-transform.right * speed * Time.deltaTime);
+            inputDirection += -transform.right;
             firstTimeMoving = false;
+        }
+
+        if (inputDirection != Vector3.zero)
+        {
+            charController.Move(inputDirection.normalized * speed * Time.deltaTime);
+            timeFoot += Time.deltaTime;
+        }
+
+        if (timeFoot >= timeBetweenFootSteps)
+        {
+            footManager.PlayFootstep();
+            timeFoot = 0;
         }
 
         if (isSmooth == false)
