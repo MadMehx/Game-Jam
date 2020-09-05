@@ -11,7 +11,7 @@ public class TriggerListener : MonoBehaviour
     {
         if (other.CompareTag("Player") == true)
         {
-            MapManager.instance.OnTriggerHit(triggerName);
+            MapManager.instance.OnTriggerHit(triggerName, gameObject);
 
             if (disableOnActivate == true)
             {

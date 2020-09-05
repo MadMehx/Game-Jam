@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System.Collections;
+using System.Collections.Generic;
 using UnityEngine;
 
 public class MapManager : MonoBehaviour
@@ -8,11 +9,22 @@ public class MapManager : MonoBehaviour
     [SerializeField]
     private CharacterController playerController = null;
 
+    [Header("Area 1")]
     [SerializeField]
     private List<GameObject> trigger1Enable = new List<GameObject>();
     [SerializeField]
     private List<GameObject> trigger1Disable = new List<GameObject>();
 
+
+    [Header("Area 2")]
+    [SerializeField]
+    private float doorFadeLength = 2.0f;
+    [SerializeField]
+    private MeshRenderer door1MeshRenderer = null;
+    [SerializeField]
+    private Collider door1Collider = null;
+
+    [Header("Area 3")]
     [SerializeField]
     private Transform endlessHallwayPoint1 = null;
     [SerializeField]
@@ -36,7 +48,7 @@ public class MapManager : MonoBehaviour
 
 
 
-    public void OnTriggerHit(string triggerName)
+    public void OnTriggerHit(string triggerName, GameObject source)
     {
         Debug.Log($"Trigger hit {triggerName}");
 
@@ -56,6 +68,20 @@ public class MapManager : MonoBehaviour
                 playerController.transform.position = playerController.transform.position - (endlessHallwayPoint2.position - endlessHallwayPoint1.position);
                 playerController.enabled = true;
                 break;
+            case ("Door Trigger 1"):
+                if (PlayerKeyManager.instance.CheckKey("Door 1") == true)
+                {
+                    //Has Key
+                    StartCoroutine(FadeDoor(door1Collider, door1MeshRenderer));
+                    source.SetActive(false);
+                }
+                else
+                {
+                    //No Key
+                    Debug.Log("No Key");
+                }
+                break;
+
         }
     }
 
@@ -71,5 +97,22 @@ public class MapManager : MonoBehaviour
             go.SetActive(false);
         }
     }
+
+    private IEnumerator FadeDoor(Collider doorCollider, MeshRenderer doorRenderer)
+    {
+        doorCollider.enabled = false;
+        float time = 0.0f;
+
+        while (time < doorFadeLength)
+        {
+            time += Time.deltaTime;
+            doorRenderer.material.SetFloat("_AlphaFade", 1.0f - (time / doorFadeLength));
+            yield return new WaitForEndOfFrame();
+        }
+
+        Destroy(door1Collider.gameObject);
+    }
+
+
 
 }
