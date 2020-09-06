@@ -21,6 +21,7 @@ public class MainMenuManager : MonoBehaviour
     public void StartGame()
     {
         StartCoroutine(StartFade());
+        Cursor.visible = true;
     }
 
     private IEnumerator StartFade()

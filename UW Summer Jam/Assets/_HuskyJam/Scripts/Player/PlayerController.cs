@@ -67,6 +67,7 @@ public class PlayerController : MonoBehaviour
     void Start()
     {
         StartCoroutine(StartFade());
+        Cursor.visible = false;
     }
 
     void Update()
