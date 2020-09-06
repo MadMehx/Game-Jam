@@ -98,7 +98,7 @@ LightmapSettings:
     m_TrainingDataDestination: TrainingData
     m_LightProbeSampleCountMultiplier: 4
   m_LightingDataAsset: {fileID: 0}
-  m_UseShadowmask: 1
+  m_UseShadowmask: 0
 --- !u!196 &4
 NavMeshSettings:
   serializedVersion: 2
@@ -225,9 +225,8 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: 'Font - AV Quest by Gem Fonts
-
-    Textures - Textures.com'
+  m_text: "Font - AV Quest by Gem Fonts, Textures - Textures.com, \nClair de Lune
+    - Claude Debussy"
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: a1bac0e39a44a9e4291ea6119ba4171e, type: 2}
   m_sharedMaterial: {fileID: -6043591461708951651, guid: a1bac0e39a44a9e4291ea6119ba4171e,
@@ -255,11 +254,11 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 15
+  m_fontSize: 12.15
   m_fontSizeBase: 15
   m_fontWeight: 400
-  m_enableAutoSizing: 0
-  m_fontSizeMin: 18
+  m_enableAutoSizing: 1
+  m_fontSizeMin: 1
   m_fontSizeMax: 72
   m_fontStyle: 0
   m_HorizontalAlignment: 1
