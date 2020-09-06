@@ -18,10 +18,14 @@ public class MainMenuManager : MonoBehaviour
     [SerializeField]
     private string sceneName = "GameScene";
 
+    public void Start()
+    {
+        Cursor.visible = true;
+    }
+
     public void StartGame()
     {
         StartCoroutine(StartFade());
-        Cursor.visible = true;
     }
 
     private IEnumerator StartFade()
